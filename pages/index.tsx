@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { SearchIcon } from '@heroicons/react/solid';
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +12,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Airbnb</h1>
+      <Header />
+
+      <section className="bg-top bg-no-repeat bg-center bg-cover w-full h-screen p-6 flex flex-col items-center justify-between">
+        <div className='flex flex-col items-center justify-center h-1/2'>
+          <h1 className='text-3xl font-bold text-center text-white mt-20 mb-8'>
+            Not sure where to go?
+            <br />
+            Perfect.
+          </h1>
+          <div className='bg-white hover:bg-gray-50 w-36 rounded-full'>
+            <button className='bg-gradient-to-tr from-[#6F019C] to-[#C6017E] text-transparent bg-clip-text w-full py-4 rounded-full text-lg font-semibold'>I&apos;m flexible</button>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
