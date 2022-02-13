@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        top: "url('/images/bg.webp')",
+        bgTopMobile: "url('/images/bg1-mobile.webp')",
+        bgTopDesktop: "url('/images/bg1-desktop.webp')",
       },
     },
   },

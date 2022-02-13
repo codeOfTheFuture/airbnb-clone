@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { SearchIcon } from '@heroicons/react/solid';
 import Header from '../components/Header';
 
 const Home: NextPage = () => {
@@ -14,17 +13,22 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <section className="bg-top bg-no-repeat bg-center bg-cover w-full h-screen p-6 flex flex-col items-center justify-between">
-        <div className='flex flex-col items-center justify-center h-1/2'>
-          <h1 className='text-3xl font-bold text-center text-white mt-20 mb-8'>
-            Not sure where to go?
-            <br />
-            Perfect.
-          </h1>
-          <div className='bg-white hover:bg-gray-50 w-36 rounded-full'>
-            <button className='bg-gradient-to-tr from-[#6F019C] to-[#C6017E] text-transparent bg-clip-text w-full py-4 rounded-full text-lg font-semibold'>I&apos;m flexible</button>
+      <section className='flex bg-black w-full h-screen sm:h-[1000px]'>
+        <div className="bg-bgTopMobile md:bg-bgTopDesktop bg-no-repeat w-full bg-center sm:mx-auto bg-cover h-full sm:w-5/6 p-6 flex flex-col items-center justify-end sm:rounded-3xl">
+          <div className='flex flex-col items-center justify-center mb-10'>
+            <h1 className='text-3xl sm:text-5xl font-semibold text-center text-white mt-20 mb-8'>
+              Not sure where to go?
+              <br className='sm:hidden' />
+              <span> Perfect.</span>
+            </h1>
+            <div className='bg-white hover:bg-gray-50 w-36 rounded-full'>
+              <button className='bg-gradient-to-tr from-[#6F019C] to-[#C6017E] text-transparent bg-clip-text w-full py-3 rounded-full text-lg font-semibold'>I&apos;m flexible</button>
+            </div>
           </div>
         </div>
+      </section>
+      <section className='bg-white h-[800px]'>
+
       </section>
     </div>
   )
