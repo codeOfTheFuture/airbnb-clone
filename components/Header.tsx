@@ -1,15 +1,23 @@
-import HeaderCenter from "./HeaderCenter";
-import HeaderLogo from "./HeaderLogo";
-import HeaderMobile from "./HeaderMobile";
-import HeaderRight from "./HeaderRight";
 import Navbar from "./Navbar";
+import HeaderMobile from "./HeaderMobile";
+import HeaderSearch from "./HeaderSearch";
+import { useHeaderContext } from "../Context/HeaderContext";
+
 
 const Header: React.FC = () => {
+  const { startSearchOpen } = useHeaderContext();
+
   return (
-    <header className='flex items-start justify-center sm:bg-black sm:h-48 w-full relative sm:static'>
-      <Navbar />
+    <header
+      className={`flex items-start justify-center ${startSearchOpen ? "md:bg-white" : "md:bg-black"
+        }  md:h-56 2xl:h-44 w-full sticky top-0 left-0`}
+    >
+      <div className='flex flex-col w-full items-center relative md:static md:mt-6'>
+        <Navbar />
+        <HeaderSearch />
+      </div>
       <HeaderMobile />
     </header>
-  )
-}
+  );
+};
 export default Header;

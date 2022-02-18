@@ -1,13 +1,16 @@
 import { GlobeAltIcon, MenuIcon } from "@heroicons/react/solid"
+import { useHeaderContext } from "../Context/HeaderContext";
 
 
 const HeaderRight: React.FC = () => {
+  const { scrollPosition } = useHeaderContext();
+
   return (
     <div className='flex justify-end items-center gap-4'>
 
-      <a className='text-white' href="#">Become a host</a>
+      <a className={`${scrollPosition === 0 ? 'text-white' : 'text-black'}`} href="#">Become a host</a>
 
-      <GlobeAltIcon className='text-white w-5 h-5 cursor-pointer' />
+      <GlobeAltIcon className={`${scrollPosition === 0 ? 'text-white' : 'text-black'} w-5 h-5 cursor-pointer`} />
 
       <button className='flex justify-center items-center bg-white rounded-full w-20 h-10 py-1'>
         <MenuIcon className='w-8 h-8 ml-3 text-gray-700' />
