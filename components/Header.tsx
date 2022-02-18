@@ -9,10 +9,10 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`flex items-start justify-center ${startSearchOpen ? "md:bg-white" : "md:bg-black"
+      className={`flex items-start justify-center pt-4 ${startSearchOpen ? "md:bg-white drop-shadow-xl" : "md:bg-black"
         }  md:h-56 2xl:h-44 w-full sticky top-0 left-0`}
     >
-      <div className='flex flex-col w-full items-center relative md:static md:mt-6'>
+      <div className='flex flex-col w-full items-center relative md:static'>
         <Navbar />
         <HeaderSearch />
       </div>

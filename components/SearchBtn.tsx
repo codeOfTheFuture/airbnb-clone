@@ -20,7 +20,7 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     activeSearch,
     btnActive,
     searchInputRef,
-    handleClick
+    handleClick,
   } = props;
 
   const { searchButtonEnter, setSearchButtonEnter } = useHeaderContext();
@@ -34,7 +34,11 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
           : "flex-col justify-center items-start"
         }
       ${activeSearch &&
-        (btnActive ? "bg-white shadow-2xl rounded-full" : "bg-gray-100 rounded-full")
+        (btnActive
+          ? "bg-white shadow-2xl rounded-full hover:bg-white"
+          : !searchButtonEnter
+            ? "hover:bg-gray-200"
+            : "bg-gray-100 rounded-full")
         }
       ${!searchButtonEnter && "hover:bg-gray-100"}`}
       onClick={() => handleClick(id)}
@@ -61,13 +65,14 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
         </div>
       )}
       {id === 3 && (
-        <button className='flex justify-center items-center text-white bg-[#FF385C] hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'>
+        <button className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'
+          onMouseEnter={() => setSearchButtonEnter(true)}
+          onMouseLeave={() => setSearchButtonEnter(false)}
+        >
           <SearchIcon
             className='w-7 h-7'
-            onMouseEnter={() => setSearchButtonEnter(true)}
-            onMouseLeave={() => setSearchButtonEnter(false)}
           />
-          <span className={`${!activeSearch && "hidden"} text-lg ml-2`}>
+          <span className={`${!activeSearch && "hidden"} group text-lg ml-2`}>
             Search
           </span>
         </button>

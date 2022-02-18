@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import Header from "../components/Header";
 import HeaderScroll from "../components/HeaderScroll";
 import { useHeaderContext } from "../Context/HeaderContext";
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
     setStartSearchOpen(true);
     setTimeout(() => {
       return () => window.addEventListener("scroll", handleScroll);
-    }, 100);
+    }, 500);
   };
 
   return (

@@ -4,6 +4,7 @@ import SearchBtn from "./SearchBtn";
 
 const HeaderSearch: React.FC = () => {
   const {
+    scrollPosition,
     activeSearch,
     activeLocationBtn,
     activeCheckInBtn,
@@ -31,7 +32,7 @@ const HeaderSearch: React.FC = () => {
   return (
     <form
       className={`hidden md:flex justify-between h-16 mt-5 rounded-full bg-white text-gray-700 text-sm w-[900px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
-        }`}
+        } ${scrollPosition > 0 && 'border border-gray-300'}`}
     >
       <SearchBtn
         id={0}
