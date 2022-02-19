@@ -29,8 +29,8 @@ const reducer = (state: HeaderContext, action: Action): HeaderContext => {
       return {
         ...state,
         startSearchOpen: action.payload,
-        activeSearch: action.payload,
-        activeLocationBtn: action.payload
+        activeSearch: true,
+        activeLocationBtn: true
       }
     case ACTIONS.SET_ACTIVE_SEARCH:
       return {

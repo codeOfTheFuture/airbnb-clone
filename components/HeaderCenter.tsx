@@ -1,28 +1,26 @@
 import { SearchIcon } from "@heroicons/react/solid";
 import { useHeaderContext } from "../Context/HeaderContext";
+import NavLink from "./NavLink";
 
 interface HeaderCenterProps {
   startSearchClick?: () => void;
 }
 
+enum NavLinks {
+  PlacesToStay,
+  Experiences,
+  OnlineExperiences
+}
 
 const HeaderCenter: React.FC<HeaderCenterProps> = ({ startSearchClick }) => {
   const { scrollPosition, startSearchOpen, setStartSearchOpen } = useHeaderContext();
 
+
   return (scrollPosition === 0 || startSearchOpen) ? (
     <div className={`flex justify-center items-center my-4 2xl:my-0 sm:col-span-2 2xl:col-span-1 2xl:col-start-2 gap-5 ${startSearchOpen ? 'text-gray-800 hover:text-gray-700' : "text-white"} text-lg`}>
-      <div className='flex flex-col items-center relative'>
-        <a className='hover:text-gray-100 cursor-pointer'>Places to stay</a>
-        <div className='absolute top-9 w-[20px] h-[2px] bg-white'></div>
-      </div>
-      <div className='flex flex-col items-center relative group'>
-        <a className='hover:text-gray-100 cursor-pointer'>Experiences</a>
-        <div className='absolute top-9 w-[5px] h-[2px] bg-gray-50 hidden group-hover:block'></div>
-      </div>
-      <div className='flex flex-col items-center relative group'>
-        <a className='hover:text-gray-100 cursor-pointer'>Online Experiences</a>
-        <div className='absolute top-9 w-[5px] h-[2px] bg-gray-50 hidden group-hover:block'></div>
-      </div>
+      <NavLink id={NavLinks.PlacesToStay} text={'Places to stay'} />
+      <NavLink id={NavLinks.Experiences} text={'Experiences'} />
+      <NavLink id={NavLinks.OnlineExperiences} text={'Online Experiences'} />
     </div>
   ) : (
     <button

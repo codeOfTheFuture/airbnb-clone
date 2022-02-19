@@ -9,10 +9,10 @@ const Home: NextPage = () => {
   const {
     scrollPosition,
     startSearchOpen,
-    activeSearch,
     setScrollPosition,
     setStartSearchOpen,
-    setActiveSearch
+    setActiveSearch,
+    setActiveLocationBtn,
   } = useHeaderContext();
 
   const handleScroll = useCallback(() => {
@@ -46,9 +46,7 @@ const Home: NextPage = () => {
       {scrollPosition === 0 || startSearchOpen ? (
         <Header />
       ) : (
-        <HeaderScroll
-          startSearchClick={startSearchClick}
-        />
+        <HeaderScroll startSearchClick={startSearchClick} />
       )}
 
       <section className='flex bg-black w-full h-screen md:h-[600px] xl:h-[880px]'>

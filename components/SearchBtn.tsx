@@ -1,6 +1,7 @@
 import { SearchIcon } from "@heroicons/react/solid";
 import { RefObject } from "react";
 import { useHeaderContext } from "../Context/HeaderContext";
+import SearchDropdown from "./SearchDropdown";
 
 interface SearchBtnProps {
   id: number;
@@ -9,7 +10,7 @@ interface SearchBtnProps {
   activeSearch: boolean;
   btnActive: boolean;
   searchInputRef: RefObject<HTMLInputElement>;
-  handleClick: (id: number) => void;
+  handleSearchBtnClick: (id: number) => void;
 }
 
 const SearchBtn: React.FC<SearchBtnProps> = (props) => {
@@ -20,16 +21,23 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     activeSearch,
     btnActive,
     searchInputRef,
-    handleClick,
+    handleSearchBtnClick,
   } = props;
 
   const { searchButtonEnter, setSearchButtonEnter } = useHeaderContext();
 
+  enum SearchBtns {
+    Location,
+    CheckIn,
+    CheckOut,
+    Guests,
+  }
+
   return (
     <div
-      className={`flex flex-grow hover:rounded-full cursor-pointer
-      ${id === 0 && "p-4 w-1/5"}
-      ${id === 3
+      className={`relative flex flex-grow hover:rounded-full cursor-pointer
+      ${id === SearchBtns.Location && "p-4 w-1/5"}
+      ${id === SearchBtns.Guests
           ? "flex-row justify-between items-center"
           : "flex-col justify-center items-start"
         }
@@ -41,9 +49,9 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
             : "bg-gray-100 rounded-full")
         }
       ${!searchButtonEnter && "hover:bg-gray-100"}`}
-      onClick={() => handleClick(id)}
+      onClick={() => handleSearchBtnClick(id)}
     >
-      {id === 0 ? (
+      {id === SearchBtns.Location ? (
         <div className='flex flex-col ml-2'>
           <label
             className='font-semibold cursor-pointer'
@@ -64,19 +72,21 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
           <p>{text}</p>
         </div>
       )}
-      {id === 3 && (
-        <button className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'
+
+      {id === SearchBtns.Guests && (
+        <button
+          className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'
           onMouseEnter={() => setSearchButtonEnter(true)}
           onMouseLeave={() => setSearchButtonEnter(false)}
         >
-          <SearchIcon
-            className='w-7 h-7'
-          />
+          <SearchIcon className='w-7 h-7' />
           <span className={`${!activeSearch && "hidden"} group text-lg ml-2`}>
             Search
           </span>
         </button>
       )}
+
+      {btnActive && <SearchDropdown />}
     </div>
   );
 };

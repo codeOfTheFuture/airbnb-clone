@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useHeaderContext } from "../Context/HeaderContext";
+import useClickOutside from "../hooks/useClickOutside";
 import SearchBtn from "./SearchBtn";
 
 const HeaderSearch: React.FC = () => {
@@ -14,61 +15,86 @@ const HeaderSearch: React.FC = () => {
     setActiveLocationBtn,
     setActiveCheckInBtn,
     setActiveCheckOutBtn,
-    setActiveGuestsBtn
+    setActiveGuestsBtn,
   } = useHeaderContext();
 
+  const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  enum SearchBtns {
+    Location,
+    CheckIn,
+    CheckOut,
+    Guests,
+  }
 
-  const handleBtnClick = (id: number) => {
+  const searchBtnReset = (): void => {
+    setActiveLocationBtn(false);
+    setActiveCheckInBtn(false);
+    setActiveCheckOutBtn(false);
+    setActiveGuestsBtn(false);
+  };
+
+  const handleSearchBtnClick = (id: number) => {
+    searchBtnReset();
     setActiveSearch(true);
-    if (id === 0) {
+    if (id === SearchBtns.Location) {
       setActiveLocationBtn(true);
       searchInputRef.current?.focus();
-    } else if (id === 1) setActiveCheckInBtn(true);
-    else if (id === 2) setActiveCheckOutBtn(true);
-    else setActiveGuestsBtn(true);
+    }
+    if (id === SearchBtns.CheckIn) setActiveCheckInBtn(true);
+    if (id === SearchBtns.CheckOut) setActiveCheckOutBtn(true);
+    if (id === SearchBtns.Guests) setActiveGuestsBtn(true);
   };
+
+  useClickOutside(searchFormRef, () => {
+    setActiveSearch(false);
+    setActiveLocationBtn(false);
+    setActiveCheckInBtn(false);
+    setActiveCheckOutBtn(false);
+    setActiveGuestsBtn(false);
+  });
 
   return (
     <form
       className={`hidden md:flex justify-between h-16 mt-5 rounded-full bg-white text-gray-700 text-sm w-[900px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
-        } ${scrollPosition > 0 && 'border border-gray-300'}`}
+        } ${scrollPosition > 0 && "border border-gray-300"}`}
+      ref={searchFormRef}
     >
       <SearchBtn
-        id={0}
+        id={SearchBtns.Location}
         label={"Location"}
         text={"Where are you going?"}
         activeSearch={activeSearch}
         btnActive={activeLocationBtn}
         searchInputRef={searchInputRef}
-        handleClick={handleBtnClick}
+        handleSearchBtnClick={handleSearchBtnClick}
       />
       <SearchBtn
-        id={1}
+        id={SearchBtns.CheckIn}
         label={"Check in"}
         text={"Add dates"}
         activeSearch={activeSearch}
         btnActive={activeCheckInBtn}
         searchInputRef={searchInputRef}
-        handleClick={handleBtnClick}
+        handleSearchBtnClick={handleSearchBtnClick}
       />
       <SearchBtn
-        id={2}
+        id={SearchBtns.CheckOut}
         label={"Check out"}
         text={"Add Dates"}
         activeSearch={activeSearch}
         btnActive={activeCheckOutBtn}
         searchInputRef={searchInputRef}
-        handleClick={handleBtnClick}
+        handleSearchBtnClick={handleSearchBtnClick}
       />
       <SearchBtn
-        id={3}
+        id={SearchBtns.Guests}
         label={"Guests"}
         text={"Add guests"}
         activeSearch={activeSearch}
         btnActive={activeGuestsBtn}
         searchInputRef={searchInputRef}
-        handleClick={handleBtnClick}
+        handleSearchBtnClick={handleSearchBtnClick}
       />
     </form>
   );
