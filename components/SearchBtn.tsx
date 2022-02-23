@@ -10,7 +10,8 @@ interface SearchBtnProps {
   activeSearch: boolean;
   btnActive: boolean;
   searchInputRef: RefObject<HTMLInputElement>;
-  handleSearchBtnClick: (id: number) => void;
+  handleSearchBtnClick: (e: any, id: number) => void;
+  handleFormSubmit?: (e: any, id: number) => void;
 }
 
 const SearchBtn: React.FC<SearchBtnProps> = (props) => {
@@ -22,6 +23,7 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     btnActive,
     searchInputRef,
     handleSearchBtnClick,
+    handleFormSubmit
   } = props;
 
   const { searchButtonEnter, setSearchButtonEnter } = useHeaderContext();
@@ -31,11 +33,12 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     CheckIn,
     CheckOut,
     Guests,
+    Search
   }
 
   return (
     <div
-      className={`relative flex flex-grow hover:rounded-full cursor-pointer
+      className={`flex flex-grow hover:rounded-full cursor-pointer
       ${id === SearchBtns.Location && "p-4 w-1/5"}
       ${id === SearchBtns.Guests
           ? "flex-row justify-between items-center"
@@ -49,7 +52,7 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
             : "bg-gray-100 rounded-full")
         }
       ${!searchButtonEnter && "hover:bg-gray-100"}`}
-      onClick={() => handleSearchBtnClick(id)}
+      onClick={(e: any) => handleSearchBtnClick(e, id)}
     >
       {id === SearchBtns.Location ? (
         <div className='flex flex-col ml-2'>
@@ -70,14 +73,17 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
         <div className='ml-4'>
           <p className='font-semibold'>{label}</p>
           <p>{text}</p>
+          {btnActive && <SearchDropdown id={id} />}
         </div>
       )}
 
       {id === SearchBtns.Guests && (
         <button
+          type='submit'
           className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'
           onMouseEnter={() => setSearchButtonEnter(true)}
           onMouseLeave={() => setSearchButtonEnter(false)}
+          onClick={(e: any) => handleFormSubmit!(e, SearchBtns.Search)}
         >
           <SearchIcon className='w-7 h-7' />
           <span className={`${!activeSearch && "hidden"} group text-lg ml-2`}>
@@ -86,7 +92,8 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
         </button>
       )}
 
-      {btnActive && <SearchDropdown />}
+
+      {btnActive && <SearchDropdown id={id} />}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { MouseEventHandler, useRef } from "react";
 import { useHeaderContext } from "../Context/HeaderContext";
 import useClickOutside from "../hooks/useClickOutside";
 import SearchBtn from "./SearchBtn";
@@ -25,6 +25,7 @@ const HeaderSearch: React.FC = () => {
     CheckIn,
     CheckOut,
     Guests,
+    Search
   }
 
   const searchBtnReset = (): void => {
@@ -34,7 +35,7 @@ const HeaderSearch: React.FC = () => {
     setActiveGuestsBtn(false);
   };
 
-  const handleSearchBtnClick = (id: number) => {
+  const handleSearchBtnClick = (e: any, id: number) => {
     searchBtnReset();
     setActiveSearch(true);
     if (id === SearchBtns.Location) {
@@ -46,6 +47,17 @@ const HeaderSearch: React.FC = () => {
     if (id === SearchBtns.Guests) setActiveGuestsBtn(true);
   };
 
+  const handleFormSubmit = (e: any, id: number) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!searchInputRef.current?.value) {
+      searchBtnReset();
+      setActiveSearch(true);
+      setActiveLocationBtn(true);
+      searchInputRef.current?.focus();
+    }
+  }
+
   useClickOutside(searchFormRef, () => {
     setActiveSearch(false);
     setActiveLocationBtn(false);
@@ -56,7 +68,7 @@ const HeaderSearch: React.FC = () => {
 
   return (
     <form
-      className={`hidden md:flex justify-between h-16 mt-5 rounded-full bg-white text-gray-700 text-sm w-[900px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
+      className={`hidden md:flex relative justify-between h-16 mt-5 rounded-full bg-white text-gray-700 text-sm w-[900px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
         } ${scrollPosition > 0 && "border border-gray-300"}`}
       ref={searchFormRef}
     >
@@ -95,6 +107,7 @@ const HeaderSearch: React.FC = () => {
         btnActive={activeGuestsBtn}
         searchInputRef={searchInputRef}
         handleSearchBtnClick={handleSearchBtnClick}
+        handleFormSubmit={handleFormSubmit}
       />
     </form>
   );

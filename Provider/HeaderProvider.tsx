@@ -35,7 +35,7 @@ const reducer = (state: HeaderContext, action: Action): HeaderContext => {
     case ACTIONS.SET_ACTIVE_SEARCH:
       return {
         ...state,
-        activeSearch: action.payload
+        activeSearch: action.payload,
       }
     case ACTIONS.SET_SEARCH_BUTTON_ENTER:
       return {

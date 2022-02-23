@@ -10,12 +10,14 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@types/lodash": "^4.14.178",
+    "calendar": "^0.1.1",
     "lodash": "^4.17.21",
     "next": "12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/calendar": "^0.1.2",
     "@types/node": "17.0.17",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",
