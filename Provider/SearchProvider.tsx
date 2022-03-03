@@ -47,7 +47,7 @@ const reducer = (state: SearchContext, action: any): SearchContext => {
     case ACTIONS.SET_ACTIVE_GUESTS_BTN:
       return {
         ...state,
-        setActiveGuestsBtn: action.payload
+        activeGuestsBtn: action.payload
       }
     case ACTIONS.RESET_DATES:
       return {
@@ -108,6 +108,7 @@ const SearchProvider: React.FC = ({ children }) => {
   }
 
   const setActiveGuestsBtn = (active: boolean): void => {
+    console.log('set active guests: ', active);
     dispatch({ type: ACTIONS.SET_ACTIVE_GUESTS_BTN, payload: active });
   }
 

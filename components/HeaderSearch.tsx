@@ -37,6 +37,7 @@ const HeaderSearch: React.FC = () => {
   };
 
   const handleSearchBtnClick = (e: any, id: number) => {
+    console.log('it works: ', id)
     searchBtnReset();
     setActiveSearch(true);
     if (id === SearchBtns.Location) {
@@ -72,7 +73,7 @@ const HeaderSearch: React.FC = () => {
   return (
     <form
       className={`hidden md:flex relative justify-between h-16 mt-5 rounded-full
-      bg-white text-gray-700 text-sm w-[950px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
+      bg-white text-gray-700 text-sm w-[850px] max-w-3xl md:max-w-none ${activeSearch && "bg-gray-100"
         } ${scrollPosition > 0 && "border border-gray-300"}`}
       ref={searchFormRef}
     >

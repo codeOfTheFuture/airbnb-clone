@@ -30,6 +30,7 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     checkOut,
     activeCheckInBtn,
     activeCheckOutBtn,
+    activeGuestsBtn,
     setActiveCheckInBtn,
     setActiveCheckOutBtn,
     resetDates,
@@ -53,12 +54,14 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     setActiveCheckOutBtn(false);
   };
 
+  console.log(activeGuestsBtn);
+
   return (
     <div
       className={`flex flex-grow hover:rounded-full cursor-pointer
-      ${id === SearchBtns.Location && "p-2 w-[200px]"}
+      ${id === SearchBtns.Location && "p-2 w-[250px]"}
       ${id === SearchBtns.Guests
-          ? "flex-row justify-between items-center min-w-[200px]"
+          ? "flex-row justify-between items-center min-w-[250px]"
           : "flex-col justify-center items-start"
         }
       ${activeSearch &&
