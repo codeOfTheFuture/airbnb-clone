@@ -14,10 +14,6 @@ export interface HeaderContext {
   setStartSearchOpen: (openSearchMenu: boolean) => void;
   setActiveSearch: (activeSearch: boolean) => void;
   setSearchButtonEnter: (mouseEnter: boolean) => void;
-  setActiveLocationBtn: (locationBtnActive: boolean) => void;
-  setActiveCheckInBtn: (checkInBtnActive: boolean) => void;
-  setActiveCheckOutBtn: (checkOutBtnActive: boolean) => void;
-  setActiveGuestsBtn: (guestsBtnActive: boolean) => void;
 }
 
 export const initialState = {
@@ -34,10 +30,6 @@ export const initialState = {
   setStartSearchOpen: () => {},
   setActiveSearch: () => {},
   setSearchButtonEnter: () => {},
-  setActiveLocationBtn: () => {},
-  setActiveCheckInBtn: () => {},
-  setActiveCheckOutBtn: () => {},
-  setActiveGuestsBtn: () => {},
 };
 
 export const HeaderContext = createContext<HeaderContext>(initialState);

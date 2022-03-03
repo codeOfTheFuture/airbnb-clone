@@ -9,18 +9,21 @@ interface HeaderCenterProps {
 enum NavLinks {
   PlacesToStay,
   Experiences,
-  OnlineExperiences
+  OnlineExperiences,
 }
 
 const HeaderCenter: React.FC<HeaderCenterProps> = ({ startSearchClick }) => {
-  const { scrollPosition, startSearchOpen, setStartSearchOpen } = useHeaderContext();
+  const { scrollPosition, startSearchOpen, setStartSearchOpen } =
+    useHeaderContext();
 
-
-  return (scrollPosition === 0 || startSearchOpen) ? (
-    <div className={`flex justify-center items-center my-4 2xl:my-0 sm:col-span-2 2xl:col-span-1 2xl:col-start-2 gap-5 ${startSearchOpen ? 'text-gray-800 hover:text-gray-700' : "text-white"} text-lg`}>
-      <NavLink id={NavLinks.PlacesToStay} text={'Places to stay'} />
-      <NavLink id={NavLinks.Experiences} text={'Experiences'} />
-      <NavLink id={NavLinks.OnlineExperiences} text={'Online Experiences'} />
+  return scrollPosition === 0 || startSearchOpen ? (
+    <div
+      className={`flex justify-center items-center my-4 2xl:my-0 sm:col-span-2 2xl:col-span-1 2xl:col-start-2 gap-5 ${startSearchOpen ? "text-gray-800 hover:text-gray-700" : "text-white"
+        } text-lg`}
+    >
+      <NavLink id={NavLinks.PlacesToStay} text={"Places to stay"} />
+      <NavLink id={NavLinks.Experiences} text={"Experiences"} />
+      <NavLink id={NavLinks.OnlineExperiences} text={"Online Experiences"} />
     </div>
   ) : (
     <button

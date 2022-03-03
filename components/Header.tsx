@@ -3,7 +3,6 @@ import HeaderMobile from "./HeaderMobile";
 import HeaderSearch from "./HeaderSearch";
 import { useHeaderContext } from "../Context/HeaderContext";
 
-
 const Header: React.FC = () => {
   const { startSearchOpen } = useHeaderContext();
 

@@ -22,12 +22,10 @@ const GuestsInput: React.FC<GuestsInputProps> = ({
   const [count, setCount] = useState<number>(0);
 
   const incrementCount = () => {
-    console.log('it works', count)
     setCount((prevState) => prevState + 1);
   };
 
   const decrementCount = () => {
-    console.log('it works', count);
     setCount((prevState) => (prevState === 0 ? 0 : prevState - 1));
   };
 
@@ -46,7 +44,11 @@ const GuestsInput: React.FC<GuestsInputProps> = ({
           <p className='text-gray-500'>{description}</p>
         )}
       </div>
-      <GuestsCounter count={count} incrementCount={incrementCount} decrementCount={decrementCount} />
+      <GuestsCounter
+        count={count}
+        incrementCount={incrementCount}
+        decrementCount={decrementCount}
+      />
     </div>
   );
 };

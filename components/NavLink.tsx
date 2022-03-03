@@ -27,7 +27,10 @@ const NavLink: React.FC<NavLinkProps> = ({ id, text }) => {
       </a>
       <div
         className={`${startSearchOpen ? "bg-black" : "bg-white"
-          } absolute top-9 ${id === NavLinks.PlacesToStay ? 'w-[20px]' : 'hidden group-hover:block w-[5px]'} h-[2px]`}
+          } absolute top-9 ${id === NavLinks.PlacesToStay
+            ? "w-[20px]"
+            : "hidden group-hover:block w-[5px]"
+          } h-[2px]`}
       ></div>
     </div>
   );

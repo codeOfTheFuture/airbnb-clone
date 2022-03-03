@@ -1,22 +1,23 @@
-import { MouseEventHandler, useRef } from "react";
+import { useRef } from "react";
 import { useHeaderContext } from "../Context/HeaderContext";
+import { useSearchContext } from "../Context/SearchContext";
 import useClickOutside from "../hooks/useClickOutside";
 import SearchBtn from "./SearchBtn";
+import SearchDropdown from "./SearchDropdown";
 
 const HeaderSearch: React.FC = () => {
+  const { scrollPosition, activeSearch, setActiveSearch } = useHeaderContext();
+
   const {
-    scrollPosition,
-    activeSearch,
     activeLocationBtn,
     activeCheckInBtn,
     activeCheckOutBtn,
     activeGuestsBtn,
-    setActiveSearch,
     setActiveLocationBtn,
     setActiveCheckInBtn,
     setActiveCheckOutBtn,
     setActiveGuestsBtn,
-  } = useHeaderContext();
+  } = useSearchContext();
 
   const searchFormRef = useRef<HTMLFormElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ const HeaderSearch: React.FC = () => {
     CheckIn,
     CheckOut,
     Guests,
-    Search
+    Search,
   }
 
   const searchBtnReset = (): void => {
@@ -56,7 +57,7 @@ const HeaderSearch: React.FC = () => {
       setActiveLocationBtn(true);
       searchInputRef.current?.focus();
     }
-  }
+  };
 
   useClickOutside(searchFormRef, () => {
     setActiveSearch(false);
@@ -66,49 +67,62 @@ const HeaderSearch: React.FC = () => {
     setActiveGuestsBtn(false);
   });
 
+  console.log('active check in btn: ', activeCheckInBtn);
+
   return (
     <form
-      className={`hidden md:flex relative justify-between h-16 mt-5 rounded-full bg-white text-gray-700 text-sm w-[900px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
+      className={`hidden md:flex relative justify-between h-16 mt-5 rounded-full
+      bg-white text-gray-700 text-sm w-[950px] max-w-2xl lg:max-w-3xl ${activeSearch && "bg-gray-100"
         } ${scrollPosition > 0 && "border border-gray-300"}`}
       ref={searchFormRef}
     >
-      <SearchBtn
-        id={SearchBtns.Location}
-        label={"Location"}
-        text={"Where are you going?"}
-        activeSearch={activeSearch}
-        btnActive={activeLocationBtn}
-        searchInputRef={searchInputRef}
-        handleSearchBtnClick={handleSearchBtnClick}
-      />
-      <SearchBtn
-        id={SearchBtns.CheckIn}
-        label={"Check in"}
-        text={"Add dates"}
-        activeSearch={activeSearch}
-        btnActive={activeCheckInBtn}
-        searchInputRef={searchInputRef}
-        handleSearchBtnClick={handleSearchBtnClick}
-      />
-      <SearchBtn
-        id={SearchBtns.CheckOut}
-        label={"Check out"}
-        text={"Add Dates"}
-        activeSearch={activeSearch}
-        btnActive={activeCheckOutBtn}
-        searchInputRef={searchInputRef}
-        handleSearchBtnClick={handleSearchBtnClick}
-      />
-      <SearchBtn
-        id={SearchBtns.Guests}
-        label={"Guests"}
-        text={"Add guests"}
-        activeSearch={activeSearch}
-        btnActive={activeGuestsBtn}
-        searchInputRef={searchInputRef}
-        handleSearchBtnClick={handleSearchBtnClick}
-        handleFormSubmit={handleFormSubmit}
-      />
+      <div className='flex flex-col relative justify-center'>
+        <SearchBtn
+          id={SearchBtns.Location}
+          label={"Location"}
+          text={"Where are you going?"}
+          btnActive={activeLocationBtn}
+          searchInputRef={searchInputRef}
+          handleSearchBtnClick={handleSearchBtnClick}
+        />
+        {activeLocationBtn && <SearchDropdown id={SearchBtns.Location} />}
+      </div>
+      <div className='flex flex-col flex-grow'>
+        <div className='flex w-full h-full'>
+          <SearchBtn
+            id={SearchBtns.CheckIn}
+            label={"Check in"}
+            text={"Add dates"}
+            btnActive={activeCheckInBtn}
+            searchInputRef={searchInputRef}
+            handleSearchBtnClick={handleSearchBtnClick}
+          />
+
+          <SearchBtn
+            id={SearchBtns.CheckOut}
+            label={"Check out"}
+            text={"Add Dates"}
+            btnActive={activeCheckOutBtn}
+            searchInputRef={searchInputRef}
+            handleSearchBtnClick={handleSearchBtnClick}
+          />
+        </div>
+        {(activeCheckInBtn || activeCheckOutBtn) && (
+          <SearchDropdown id={SearchBtns.CheckIn} />
+        )}
+      </div>
+      <div className='flex flex-col relative justify-center'>
+        <SearchBtn
+          id={SearchBtns.Guests}
+          label={"Guests"}
+          text={"Add guests"}
+          btnActive={activeGuestsBtn}
+          searchInputRef={searchInputRef}
+          handleSearchBtnClick={handleSearchBtnClick}
+          handleFormSubmit={handleFormSubmit}
+        />
+        {activeGuestsBtn && <SearchDropdown id={SearchBtns.Guests} />}
+      </div>
     </form>
   );
 };

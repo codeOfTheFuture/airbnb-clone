@@ -5,17 +5,19 @@ import { Calendar } from "calendar";
 import { useEffect, useState } from "react";
 
 interface DatePickerProps {
-  checkIn: Date | null;
-  checkOut: Date | null;
   month: number;
   year: number;
   dateHover: Date | null;
-  handleDateSelect: (date: Date) => void;
   handleDateHover: (date: Date | null) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = (props) => {
-  const { checkIn, checkOut, month, year, dateHover, handleDateSelect, handleDateHover } = props;
+  const {
+    month,
+    year,
+    dateHover,
+    handleDateHover,
+  } = props;
   const [dates, setDates] = useState<number[]>([]);
 
   useEffect(() => {
@@ -34,13 +36,10 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
         {dates.map((date, i) => (
           <DatePickerDay
             key={i}
-            checkIn={checkIn}
-            checkOut={checkOut}
             date={date}
             month={month}
             year={year}
             dateHover={dateHover}
-            handleDateSelect={handleDateSelect}
             handleDateHover={handleDateHover}
           />
         ))}

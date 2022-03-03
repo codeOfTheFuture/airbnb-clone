@@ -2,21 +2,11 @@ import { useState } from "react";
 import DatePicker from "./DatePicker";
 
 const CalendarDropdown: React.FC = () => {
-  const [month, setMonth] = useState<number>(new Date().getMonth());
-  const [year, setYear] = useState<number>(new Date().getFullYear());
-  const [checkIn, setCheckIn] = useState<Date | null>(null);
-  const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [dateHover, setDateHover] = useState<Date | null>(null);
 
 
-  console.log("check in: ", checkIn, 'check out: ', checkOut);
-
-  const handleDateSelect = (date: Date): void => {
-    if (checkIn === null) {
-      return setCheckIn(date);
-    }
-    setCheckOut(date);
-  }
+  const currMonth = new Date().getMonth(),
+    currYear = new Date().getFullYear();
 
   const handleDateHover = (date: Date | null): void => {
     setDateHover(date);
@@ -34,8 +24,18 @@ const CalendarDropdown: React.FC = () => {
       </div>
 
       <div className='flex mt-8 justify-evenly w-full'>
-        <DatePicker checkIn={checkIn} checkOut={checkOut} month={month} year={year} dateHover={dateHover} handleDateSelect={handleDateSelect} handleDateHover={handleDateHover} />
-        <DatePicker checkIn={checkIn} checkOut={checkOut} month={month + 1} year={year} dateHover={dateHover} handleDateSelect={handleDateSelect} handleDateHover={handleDateHover} />
+        <DatePicker
+          month={currMonth}
+          year={currYear}
+          dateHover={dateHover}
+          handleDateHover={handleDateHover}
+        />
+        <DatePicker
+          month={currMonth + 1}
+          year={currYear}
+          dateHover={dateHover}
+          handleDateHover={handleDateHover}
+        />
       </div>
     </div>
   );

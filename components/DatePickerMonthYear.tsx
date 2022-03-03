@@ -3,9 +3,24 @@ interface DatePickerMonthYearProps {
   year: number;
 }
 
-const DatePickerMonthYear: React.FC<DatePickerMonthYearProps> = ({ month, year }) => {
-  const months = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
+const DatePickerMonthYear: React.FC<DatePickerMonthYearProps> = ({
+  month,
+  year,
+}) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <div className='flex gap-2 justify-center w-full py-2 font-semibold'>

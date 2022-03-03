@@ -1,13 +1,12 @@
 import { SearchIcon } from "@heroicons/react/solid";
 import { RefObject } from "react";
 import { useHeaderContext } from "../Context/HeaderContext";
-import SearchDropdown from "./SearchDropdown";
+import { useSearchContext } from "../Context/SearchContext";
 
 interface SearchBtnProps {
   id: number;
   label: string;
   text: string;
-  activeSearch: boolean;
   btnActive: boolean;
   searchInputRef: RefObject<HTMLInputElement>;
   handleSearchBtnClick: (e: any, id: number) => void;
@@ -19,39 +18,57 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
     id,
     label,
     text,
-    activeSearch,
     btnActive,
     searchInputRef,
     handleSearchBtnClick,
-    handleFormSubmit
+    handleFormSubmit,
   } = props;
 
   const { searchButtonEnter, setSearchButtonEnter } = useHeaderContext();
+  const {
+    checkIn,
+    checkOut,
+    activeCheckInBtn,
+    activeCheckOutBtn,
+    setActiveCheckInBtn,
+    setActiveCheckOutBtn,
+    resetDates,
+  } = useSearchContext();
+
+  const { activeSearch, setActiveSearch } = useHeaderContext();
+
 
   enum SearchBtns {
     Location,
     CheckIn,
     CheckOut,
     Guests,
-    Search
+    Search,
   }
+
+  const handleDateReset = (e: any): void => {
+    e.stopPropagation();
+    resetDates();
+    setActiveCheckInBtn(true);
+    setActiveCheckOutBtn(false);
+  };
 
   return (
     <div
       className={`flex flex-grow hover:rounded-full cursor-pointer
-      ${id === SearchBtns.Location && "p-4 w-1/5"}
+      ${id === SearchBtns.Location && "p-2 w-[200px]"}
       ${id === SearchBtns.Guests
-          ? "flex-row justify-between items-center"
+          ? "flex-row justify-between items-center min-w-[200px]"
           : "flex-col justify-center items-start"
         }
       ${activeSearch &&
         (btnActive
-          ? "bg-white shadow-2xl rounded-full hover:bg-white"
+          ? "bg-white shadow-2xl rounded-full"
           : !searchButtonEnter
             ? "hover:bg-gray-200"
             : "bg-gray-100 rounded-full")
         }
-      ${!searchButtonEnter && "hover:bg-gray-100"}`}
+      ${!searchButtonEnter && !btnActive && "hover:bg-gray-100"}`}
       onClick={(e: any) => handleSearchBtnClick(e, id)}
     >
       {id === SearchBtns.Location ? (
@@ -70,17 +87,33 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
           />
         </div>
       ) : (
-        <div className='ml-4'>
+        <div className='ml-4 relative'>
           <p className='font-semibold'>{label}</p>
-          <p>{text}</p>
-          {btnActive && <SearchDropdown id={id} />}
+          {id === SearchBtns.CheckIn && checkIn && (
+            <p>{checkIn.toLocaleDateString()}</p>
+          )}
+          {id === SearchBtns.CheckOut && checkOut && (
+            <p>{checkOut.toLocaleDateString()}</p>
+          )}
+          {((id === SearchBtns.CheckIn && checkIn === null) ||
+            (id === SearchBtns.CheckOut && checkOut === null)) && <p>{text}</p>}
+          {id === SearchBtns.Guests && <p>{text}</p>}
+          {((id === SearchBtns.CheckIn && checkIn && activeCheckInBtn) ||
+            (id === SearchBtns.CheckOut && checkOut && activeCheckOutBtn)) && (
+              <div
+                className='flex justify-center items-center w-8 h-8 rounded-full text-sm font-bold absolute top-1 left-28 bg-gray-200 text-gray-500'
+                onClick={(e: any) => handleDateReset(e)}
+              >
+                X
+              </div>
+            )}
         </div>
       )}
 
       {id === SearchBtns.Guests && (
         <button
           type='submit'
-          className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full m-2 p-3 z-10 font-semibold'
+          className='flex justify-center items-center text-white bg-[#FF385C] group-hover:bg-[#DE3151] rounded-full ml-6 mr-2 p-3 font-semibold'
           onMouseEnter={() => setSearchButtonEnter(true)}
           onMouseLeave={() => setSearchButtonEnter(false)}
           onClick={(e: any) => handleFormSubmit!(e, SearchBtns.Search)}
@@ -91,9 +124,6 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
           </span>
         </button>
       )}
-
-
-      {btnActive && <SearchDropdown id={id} />}
     </div>
   );
 };
