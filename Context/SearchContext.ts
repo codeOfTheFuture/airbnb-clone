@@ -4,15 +4,20 @@ export interface SearchContext {
   location: string;
   checkIn: Date | null;
   checkOut: Date | null;
-  guests: number;
-  adults: number;
-  children: number;
-  infants: number;
-  pets: number;
+  guestsCount: number;
+  adultsCount: number;
+  childrenCount: number;
+  infantsCount: number;
+  petsCount: number;
   activeLocationBtn: boolean;
   activeCheckInBtn: boolean;
   activeCheckOutBtn: boolean;
   activeGuestsBtn: boolean;
+  setGuestsCount: (count: number) => void;
+  setAdultsCount: (count: number) => void;
+  setChildrenCount: (count: number) => void;
+  setInfantsCount: (count: number) => void;
+  setPetsCount: (count: number) => void;
   setActiveLocationBtn: (active: boolean) => void;
   setActiveCheckInBtn: (active: boolean) => void;
   setActiveCheckOutBtn: (active: boolean) => void;
@@ -26,15 +31,20 @@ export const initialState = {
   location: "",
   checkIn: null,
   checkOut: null,
-  guests: 0,
-  adults: 0,
-  children: 0,
-  infants: 0,
-  pets: 0,
+  guestsCount: 0,
+  adultsCount: 0,
+  childrenCount: 0,
+  infantsCount: 0,
+  petsCount: 0,
   activeLocationBtn: false,
   activeCheckInBtn: false,
   activeCheckOutBtn: false,
   activeGuestsBtn: false,
+  setGuestsCount: () => {},
+  setAdultsCount: () => {},
+  setChildrenCount: () => {},
+  setInfantsCount: () => {},
+  setPetsCount: () => {},
   setActiveLocationBtn: () => {},
   setActiveCheckInBtn: () => {},
   setActiveCheckOutBtn: () => {},

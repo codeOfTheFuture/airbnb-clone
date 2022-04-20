@@ -5,11 +5,11 @@ const ACTIONS = {
   SET_LOCATION: 'SET_LOCATION',
   SET_CHECK_IN_DATE: 'SET_CHECK_IN_DATE',
   SET_CHECK_OUT_DATE: 'SET_CHECK_OUT_DATE',
-  SET_GUESTS: 'SET_GUESTS',
-  SET_ADULTS: 'SET_ADULTS',
-  SET_CHILDREN: 'SET_CHILDREN',
-  SET_INFANTS: 'SET_INFANTS',
-  SET_PETS: 'SET_PETS',
+  SET_GUESTS_COUNT: 'SET_GUESTS_COUNT',
+  SET_ADULTS_COUNT: 'SET_ADULTS_COUNT',
+  SET_CHILDREN_COUNT: 'SET_CHILDREN_COUNT',
+  SET_INFANTS_COUNT: 'SET_INFANTS_COUNT',
+  SET_PETS_COUNT: 'SET_PETS_COUNT',
   SET_ACTIVE_LOCATION_BTN: 'SET_ACTIVE_LOCATION_BTN',
   SET_ACTIVE_CHECK_IN_BTN: 'SET_ACTIVE_CHECK_IN_BTN',
   SET_ACTIVE_CHECK_OUT_BTN: 'SET_ACTIVE_CHECK_OUT_BTN',
@@ -55,6 +55,31 @@ const reducer = (state: SearchContext, action: any): SearchContext => {
         checkIn: action.payload,
         checkOut: action.payload,
       }
+    case ACTIONS.SET_GUESTS_COUNT:
+      return {
+        ...state,
+        guestsCount: action.payload
+      }
+    case ACTIONS.SET_ADULTS_COUNT:
+      return {
+        ...state,
+        adultsCount: action.payload
+      }
+    case ACTIONS.SET_CHILDREN_COUNT:
+      return {
+        ...state,
+        childrenCount: action.payload
+      }
+    case ACTIONS.SET_INFANTS_COUNT:
+      return {
+        ...state,
+        infantsCount: action.payload
+      }
+    case ACTIONS.SET_PETS_COUNT:
+      return {
+        ...state,
+        petsCount: action.payload
+      }
     default:
       return state;
   }
@@ -75,24 +100,24 @@ const SearchProvider: React.FC = ({ children }) => {
     dispatch({ type: ACTIONS.SET_CHECK_OUT_DATE, payload: date })
   }
 
-  const setGuests = (guests: number): void => {
-    dispatch({ type: ACTIONS.SET_GUESTS, payload: guests })
+  const setGuestsCount = (guests: number): void => {
+    dispatch({ type: ACTIONS.SET_GUESTS_COUNT, payload: guests })
   }
 
-  const setAdults = (adults: number): void => {
-    dispatch({ type: ACTIONS.SET_ADULTS, payload: adults })
+  const setAdultsCount = (adults: number): void => {
+    dispatch({ type: ACTIONS.SET_ADULTS_COUNT, payload: adults })
   }
 
-  const setChildren = (children: number): void => {
-    dispatch({ type: ACTIONS.SET_CHILDREN, payload: children })
+  const setChildrenCount = (children: number): void => {
+    dispatch({ type: ACTIONS.SET_CHILDREN_COUNT, payload: children })
   }
 
-  const setInfants = (infants: number): void => {
-    dispatch({ type: ACTIONS.SET_INFANTS, payload: infants })
+  const setInfantsCount = (infants: number): void => {
+    dispatch({ type: ACTIONS.SET_INFANTS_COUNT, payload: infants })
   }
 
-  const setPets = (pets: number): void => {
-    dispatch({ type: ACTIONS.SET_PETS, payload: pets });
+  const setPetsCount = (pets: number): void => {
+    dispatch({ type: ACTIONS.SET_PETS_COUNT, payload: pets });
   }
 
   const setActiveLocationBtn = (active: boolean): void => {
@@ -121,11 +146,11 @@ const SearchProvider: React.FC = ({ children }) => {
     setLocation,
     setCheckInDate,
     setCheckOutDate,
-    setGuests,
-    setAdults,
-    setChildren,
-    setInfants,
-    setPets,
+    setGuestsCount,
+    setAdultsCount,
+    setChildrenCount,
+    setInfantsCount,
+    setPetsCount,
     setActiveLocationBtn,
     setActiveCheckInBtn,
     setActiveCheckOutBtn,

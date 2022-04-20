@@ -28,6 +28,10 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
   const {
     checkIn,
     checkOut,
+    guestsCount,
+    childrenCount,
+    infantsCount,
+    petsCount,
     activeCheckInBtn,
     activeCheckOutBtn,
     activeGuestsBtn,
@@ -37,7 +41,6 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
   } = useSearchContext();
 
   const { activeSearch, setActiveSearch } = useHeaderContext();
-
 
   enum SearchBtns {
     Location,
@@ -100,7 +103,17 @@ const SearchBtn: React.FC<SearchBtnProps> = (props) => {
           )}
           {((id === SearchBtns.CheckIn && checkIn === null) ||
             (id === SearchBtns.CheckOut && checkOut === null)) && <p>{text}</p>}
-          {id === SearchBtns.Guests && <p>{text}</p>}
+          {id === SearchBtns.Guests &&
+            (guestsCount ? (
+              <p className='truncate w-20'>
+                {guestsCount + ' guests'}
+                {childrenCount > 0 && `, ${childrenCount + ' children'}`}
+                {infantsCount > 0 && `, ${infantsCount + ' infants'}`}
+                {petsCount > 0 && `, ${petsCount + ' pets'}`}
+              </p>
+            ) : (
+              <p>{text}</p>
+            ))}
           {((id === SearchBtns.CheckIn && checkIn && activeCheckInBtn) ||
             (id === SearchBtns.CheckOut && checkOut && activeCheckOutBtn)) && (
               <div

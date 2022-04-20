@@ -1,10 +1,10 @@
-import { useState } from "react";
 import GuestsCounter from "./GuestsCounter";
 
 interface GuestsInputProps {
   id: number;
   label: string;
   description: string;
+  count: number;
 }
 
 enum GuestsInputs {
@@ -18,16 +18,8 @@ const GuestsInput: React.FC<GuestsInputProps> = ({
   id,
   label,
   description,
+  count
 }) => {
-  const [count, setCount] = useState<number>(0);
-
-  const incrementCount = () => {
-    setCount((prevState) => prevState + 1);
-  };
-
-  const decrementCount = () => {
-    setCount((prevState) => (prevState === 0 ? 0 : prevState - 1));
-  };
 
   return (
     <div
@@ -44,11 +36,7 @@ const GuestsInput: React.FC<GuestsInputProps> = ({
           <p className='text-gray-500'>{description}</p>
         )}
       </div>
-      <GuestsCounter
-        count={count}
-        incrementCount={incrementCount}
-        decrementCount={decrementCount}
-      />
+      <GuestsCounter id={id} count={count} />
     </div>
   );
 };
