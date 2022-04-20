@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useCallback, useEffect } from "react";
 import Header from "../components/Header";
 import HeaderScroll from "../components/HeaderScroll";
+import TripInspiration from "../components/TripInspiration";
 import { useHeaderContext } from "../Context/HeaderContext";
 
 const Home: NextPage = () => {
@@ -11,8 +12,6 @@ const Home: NextPage = () => {
     startSearchOpen,
     setScrollPosition,
     setStartSearchOpen,
-    setActiveSearch,
-    setActiveLocationBtn,
   } = useHeaderContext();
 
   const handleScroll = useCallback(() => {
@@ -65,7 +64,18 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-white h-[800px]'></section>
+      <section className='bg-white h-[800px] w-full overflow-hidden'>
+        <div className="flex flex-col w-5/6 mx-auto my-20">
+          <div className="flex items-center">
+            <h2 className='text-[1.6rem] md:text-[2.6rem] font-semibold mb-10'>Inspiration for your next trip</h2>
+            <div className="flex gap-2 h-[100px] md:hidden">
+              <div className="flex justify-center items-center w-8 h-8 border-2 rounded-full text-xl font-semibold">{'<'}</div>
+              <div className="flex justify-center items-center w-8 h-8 border-2 rounded-full text-xl font-semibold">{'>'}</div>
+            </div>
+          </div>
+          <TripInspiration />
+        </div>
+      </section>
     </div>
   );
 };
