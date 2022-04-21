@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useCallback, useEffect } from "react";
 import Experiences from "../components/Experiences";
+import Footer from "../components/Footer";
 import Getaways from "../components/Getaways";
 import Header from "../components/Header";
 import HeaderScroll from "../components/HeaderScroll";
@@ -94,7 +95,7 @@ const Home: NextPage = () => {
         <div className="flex justify-between w-5/6 mx-auto">
           <div className="w-[300px]">
             <h2 className="text-5xl font-semibold mb-10">Shop Airbnb gift cards</h2>
-            <button className="w-36 h-12 rounded-2xl bg-gray-900 hover:bg-black text-white">Learn More</button>
+            <button className="w-36 h-12 rounded-2xl bg-gray-900 hover:bg-black text-white font-medium">Learn More</button>
           </div>
           <div className="relative w-[1000px] h-[400px]">
             <Image src='/images/gift-cards.webp' layout="fill" alt='' />
@@ -107,7 +108,7 @@ const Home: NextPage = () => {
           <Image src='/images/ask-a-superhost.jpg' layout='fill' className='rounded-3xl object-contain' alt='' />
           <div className="absolute flex flex-col justify-between p-14 top-0 left-0 w-full h-full text-white rounded-3xl">
             <h3 className="text-7xl font-bold w-[300px]">Questions about hosting?</h3>
-            <button className="w-36 h-14 bg-white hover:bg-gray-100 text-black rounded-2xl">Ask a Superhost</button>
+            <button className="w-36 h-14 bg-white hover:bg-gray-100 text-black font-medium rounded-2xl">Ask a Superhost</button>
           </div>
         </div>
       </section>
@@ -119,60 +120,7 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <footer className="bg-gray-200 w-full h-[400px]">
-        <div className="flex w-5/6 mx-auto">
-          <div className="flex flex-col flex-grow">
-            <p>Support</p>
-            <a>Help Center</a>
-            <a>Safety information</a>
-            <a>Cancellation options</a>
-            <a>Our COVID-19 Response</a>
-            <a>Supporting people with disabilities</a>
-            <a>Report a neighborhood concern</a>
-          </div>
-          <div className="flex flex-col flex-grow">
-            <p>Community</p>
-            <a>Airbnb.org: disaster relief housing</a>
-            <a>Support Afghan refugees</a>
-            <a>Combating discrimination</a>
-          </div>
-          <div className="flex flex-col flex-grow">
-            <p>Hosting</p>
-            <a>Try hosting</a>
-            <a>AirCover: protection for Hosts</a>
-            <a>Explore hosting resources</a>
-            <a>Visit our community forum</a>
-            <a>How to host responsibly</a>
-          </div>
-          <div className="flex flex-col flex-grow">
-            <p>About</p>
-            <a>Newsroom</a>
-            <a>Learn about new features</a>
-            <a>Letter from our founders</a>
-            <a>Careers</a>
-            <a>Investors</a>
-            <a>Airbnb Luxe</a>
-          </div>
-        </div>
-        <hr />
-        <div className="flex w-5/6 mx-auto justify-between mt-10">
-          <div className="flex">
-            <p>© Airbnb Inc.</p>
-            <p>Privacy</p>
-            <p>Terms</p>
-            <p>Site map</p>
-          </div>
-          <div className="flex">
-            <p>English(US)</p>
-            <p>$ USD</p>
-            <div className="flex">
-              <p>f</p>
-              <p>t</p>
-              <p>i</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

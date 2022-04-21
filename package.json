@@ -12,9 +12,10 @@
     "@types/lodash": "^4.14.178",
     "calendar": "^0.1.1",
     "lodash": "^4.17.21",
-    "next": "12.0.10",
+    "next": "^12.1.5",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {
     "@types/calendar": "^0.1.2",

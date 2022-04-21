@@ -6,7 +6,7 @@ const GetawaysTabs: React.FC = () => {
   return (
     <div className="flex py-2">
       {tabsText.map((tabText, index) => (
-        <GetawaysTab tabText={tabText} key={index} />
+        <GetawaysTab tabText={tabText} key={index} active={index === 0} />
       ))}
     </div>
   )
