@@ -1,4 +1,4 @@
-const DatePickerWeek = () => {
+const DatePickerWeek: React.FC = () => {
   const weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   return (
     <div className='grid grid-cols-7 items-center w-full p-2'>
