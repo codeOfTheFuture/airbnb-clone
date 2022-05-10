@@ -68,8 +68,8 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className='bg-white h-[800px] w-full overflow-hidden'>
-        <div className="flex flex-col w-5/6 mx-auto my-20">
+      <section className='bg-white h-auto sm:h-[800px] w-full overflow-hidden'>
+        <div className="flex flex-col sm:w-5/6 mx-auto my-20">
           <div className="flex items-center">
             <h2 className='text-[1.6rem] md:text-[2.6rem] font-semibold mb-10'>Inspiration for your next trip</h2>
             <div className="flex gap-2 h-[100px] md:hidden">
@@ -81,10 +81,10 @@ const Home: NextPage = () => {
         </div>
       </section>
 
-      <section className="bg-white h-[1000px]">
+      <section className="bg-white h-auto sm:h-[1000px]">
         <div className="md:w-5/6 mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Discover Airbnb Experiences</h2>
-          <div className="flex gap-8">
+          <div className="flex flex-col sm:flex-row gap-8">
             <Experiences img='/images/experiences.webp' heading='Things to do on your trip' btnText='Experiences' />
             <Experiences img='/images/online-experiences.webp' heading='Things to do from home' btnText='Online Experiences' />
           </div>
@@ -92,29 +92,29 @@ const Home: NextPage = () => {
       </section>
 
       <section className="bg-white h-[500px]">
-        <div className="flex justify-between w-5/6 mx-auto">
+        <div className="flex flex-col sm:flex-row justify-between w-5/6 mx-auto">
           <div className="w-[300px]">
-            <h2 className="text-5xl font-semibold mb-10">Shop Airbnb gift cards</h2>
+            <h2 className="text-3xl sm:text-5xl font-semibold mb-10">Shop Airbnb gift cards</h2>
             <button className="w-36 h-12 rounded-2xl bg-gray-900 hover:bg-black text-white font-medium">Learn More</button>
           </div>
-          <div className="relative w-[1000px] h-[400px]">
+          <div className="relative w-full sm:w-[1000px] h-[400px]">
             <Image src='/images/gift-cards.webp' layout="fill" alt='' />
           </div>
         </div>
       </section>
 
-      <section className="bg-white w-f h-[900px]">
-        <div className="relative w-5/6 h-[800px] mx-auto rounded-3xl">
-          <Image src='/images/ask-a-superhost.jpg' layout='fill' className='rounded-3xl object-contain' alt='' />
-          <div className="absolute flex flex-col justify-between p-14 top-0 left-0 w-full h-full text-white rounded-3xl">
-            <h3 className="text-7xl font-bold w-[300px]">Questions about hosting?</h3>
+      <section className="bg-white w-full sm:h-[900px]">
+        <div className="relative w-full h-screen sm:w-5/6 sm:h-[800px] mx-auto rounded-3xl">
+          <Image src='/images/ask-a-superhost.jpg' layout='fill' className='rounded-3xl object-cover sm:object-contain' alt='' />
+          <div className="absolute flex flex-col justify-between sm:p-14 top-0 left-0 w-full h-full text-white rounded-3xl">
+            <h3 className="text-xl sm:text-7xl font-bold w-[300px]">Questions about hosting?</h3>
             <button className="w-36 h-14 bg-white hover:bg-gray-100 text-black font-medium rounded-2xl">Ask a Superhost</button>
           </div>
         </div>
       </section>
 
-      <section className="bg-white w-full h-[500px]">
-        <div className="w-5/6 mx-auto">
+      <section className="bg-white w-full h-auto sm:h-[500px]">
+        <div className="w-5/6 mx-auto overflow-x-hidden">
           <h2 className="text-2xl font-medium mb-2 ml-2">Inspiration for future getaways</h2>
           <Getaways />
         </div>

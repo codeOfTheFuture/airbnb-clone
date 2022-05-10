@@ -7,14 +7,14 @@ const Footer: React.FC = () => {
   const footerLinks = [{ heading: 'Support', links: ['Help Center', 'Safety information', 'Cancellation options', 'Our COVID-19 Response', 'Supporting people with disabilities', 'Report a neighborhood concern'] }, { heading: 'Community', links: ['Airbnb.org: disaster relief housing', 'Support Afghan refugees', 'Combating discrimination'] }, { heading: 'Hosting', links: ['Try hosting', 'AirCover: protection for Hosts', 'Explore hosting resources', 'Visit to host responsibly'] }, { heading: 'About', links: ['Newsroom', 'Learn about new features', 'Letter from our founders', 'Careers', 'Investors', 'Airbnb Luxe'] }];
 
   return (
-    <footer className="bg-stone-100 w-full h-[400px]">
-      <div className="flex w-5/6 mx-auto pb-5 border-b-2">
+    <footer className="bg-stone-100 w-full h-auto sm:h-[400px]">
+      <div className="flex flex-col sm:flex-row w-5/6 mx-auto pb-5 border-b-2">
         {footerLinks.map((footerLink, index) => (
           <FooterCol key={index} heading={footerLink.heading} links={footerLink.links} />
         ))}
       </div>
 
-      <div className="flex w-5/6 mx-auto justify-between mt-5">
+      <div className="flex flex-col sm:flex-row w-5/6 mx-auto justify-between mt-5">
         <div className="flex gap-2">
           <p>© Airbnb Inc.</p>
           &middot;
